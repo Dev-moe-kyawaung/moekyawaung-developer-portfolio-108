@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --q-cyan: #22e7ff;
+  --q-violet: #a855f7;
+  --q-plasma: #ff5a1f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #03060c;
+  color: #d8f4ff;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #22e7ff;
+  color: #03060c;
+}
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: #04080f; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#22e7ff, #a855f7);
+  border-radius: 9px;
+}
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes spin-rev { to { transform: rotate(-360deg); } }
+@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes pulse-ring {
+  0% { transform: scale(0.85); opacity: 0.85; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+@keyframes dash-draw { to { stroke-dashoffset: 0; } }
+@keyframes dash-flow { to { stroke-dashoffset: -400; } }
+@keyframes scan-y {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  43% { opacity: 0.72; }
+  47% { opacity: 1; }
+  71% { opacity: 0.86; }
+}
+@keyframes heat {
+  0%, 100% { filter: blur(28px) hue-rotate(0deg); transform: scale(1); }
+  50% { filter: blur(38px) hue-rotate(24deg); transform: scale(1.07); }
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes glitch-x {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-1px); }
+}
+
+.animate-spin-slow { animation: spin-slow 22s linear infinite; }
+.animate-spin-rev { animation: spin-rev 34s linear infinite; }
+.animate-float-y { animation: float-y 6s ease-in-out infinite; }
+.animate-flicker { animation: flicker 4.5s linear infinite; }
+.animate-heat { animation: heat 7s ease-in-out infinite; }
+.animate-marquee { animation: marquee 28s linear infinite; }
+
+.draw-line {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: dash-draw 2.4s ease-out forwards;
+}
+.flow-line {
+  stroke-dasharray: 6 10;
+  animation: dash-flow 6s linear infinite;
+}
+
+.grid-matrix {
+  background-image:
+    linear-gradient(rgba(34, 231, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 231, 255, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.grid-blueprint {
+  background-image:
+    linear-gradient(rgba(120, 180, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 180, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(rgba(120, 180, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 180, 255, 0.06) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+}
+
+.text-glow { text-shadow: 0 0 18px rgba(34, 231, 255, 0.6); }
+.plasma-glow { text-shadow: 0 0 22px rgba(255, 90, 31, 0.75); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(38px);
+  transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.in { opacity: 1; transform: none; }
